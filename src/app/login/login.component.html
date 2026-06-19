@@ -1,58 +1,61 @@
 <div
   class="flex min-h-screen items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
 >
-  <div class="max-w-md w-full space-y-8">
-    <div>
-      <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
-        Sign in to your dashboard
-      </h2>
+  <div class="max-w-mxd w-full space-y-8">
+    <div class="flex justify-center items-center gap-5">
+      <div class="w-1/2">
+        <div class="border border-gray-300 rounded-md overflow-hidden">
+          <div class="text-lg text-center bg-gray-100 py-2">
+            Sign in to your dashboard
+          </div>
+          <form
+            class="space-y-6 p-6 bg-white"
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
+          >
+            <div class="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label for="username" class="sr-only">Username</label>
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  formControlName="username"
+                  required
+                  class="appearance-none w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm mb-4"
+                  placeholder="Username"
+                />
+              </div>
+              <div>
+                <label for="password" class="sr-only">Password</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  formControlName="password"
+                  required
+                  class="appearance-none w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+
+            <div *ngIf="errorMessage" class="text-red-600 text-sm text-center">
+              {{ errorMessage }}
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                [disabled]="loginForm.invalid"
+                class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 cursor-pointer"
+              >
+                SIGN IN
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <form
-      class="mt-8 space-y-6"
-      [formGroup]="loginForm"
-      (ngSubmit)="onSubmit()"
-    >
-      <!-- <form class="mt-8 space-y-6"> -->
-      <div class="rounded-md shadow-sm -space-y-px">
-        <div>
-          <label for="username" class="sr-only">Username</label>
-          <input
-            id="username"
-            name="username"
-            type="text"
-            formControlName="username"
-            required
-            class="appearance-none w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm mb-4"
-            placeholder="Username"
-          />
-        </div>
-        <div>
-          <label for="password" class="sr-only">Password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            formControlName="password"
-            required
-            class="appearance-none w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-            placeholder="Password"
-          />
-        </div>
-      </div>
-
-      <div *ngIf="errorMessage" class="text-red-600 text-sm text-center">
-        {{ errorMessage }}
-      </div>
-
-      <div>
-        <button
-          type="submit"
-          [disabled]="loginForm.invalid"
-          class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 cursor-pointer"
-        >
-          SIGN IN
-        </button>
-      </div>
-    </form>
   </div>
 </div>
