@@ -32,6 +32,8 @@ export class LoginComponent {
       } catch (err) {
         this.errorMessage = 'Login failed';
       }
+    } else {
+      this.errorMessage = 'Username and password are required.';
     }
   }
 }
