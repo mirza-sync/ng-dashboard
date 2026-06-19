@@ -35,22 +35,27 @@ export class AuthService {
   }
 
   async login(username: string, password: string): Promise<boolean> {
-    const responseToken = await firstValueFrom(
-      this.http.post(
-        'http://test-demo.aemenersol.com/api/account/login',
-        { username, password },
-        { responseType: 'text' },
-      ),
-    );
+    try {
+      const responseToken = await firstValueFrom(
+        this.http.post(
+          'http://test-demo.aemenersol.com/api/account/login',
+          { username, password },
+          { responseType: 'text' },
+        ),
+      );
 
-    if (responseToken) {
-      this.user = { username, password };
-      this.authenticated = true;
-      localStorage.setItem('currentUser', JSON.stringify(this.user));
-      localStorage.setItem('token', responseToken);
-      return true;
+      if (responseToken) {
+        this.user = { username, password };
+        this.authenticated = true;
+        localStorage.setItem('currentUser', JSON.stringify(this.user));
+        localStorage.setItem('token', responseToken);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Authentication error:', error);
+      return false;
     }
-    return false;
   }
 
   logout(): void {
