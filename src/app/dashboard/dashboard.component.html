@@ -1,1 +1,43 @@
-<p>dashboard works!</p>
+<header
+  class="bg-black text-gray-600 flex justify-between items-center px-8 py-2"
+>
+  <h1 class="text-xl">Dashboard</h1>
+  <button>Sign Out</button>
+</header>
+
+<div class="p-8">
+  <h2 class="text-xl mb-2">Overview</h2>
+  <div class="flex justify-center items-center gap-5">
+    <div class="w-1/2" style="height: 300px">
+      <div class="border border-gray-300 rounded-md">
+        <canvas #donutCanvas></canvas>
+      </div>
+    </div>
+
+    <div class="w-1/2" style="height: 300px">
+      <canvas #barCanvas></canvas>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <h2 class="text-xl mb-2">User List</h2>
+    <table class="text-center">
+      <thead>
+        <tr>
+          <th class="border px-4 py-2">ID</th>
+          <th class="border px-4 py-2">First Name</th>
+          <th class="border px-4 py-2">Last Name</th>
+          <th class="border px-4 py-2">Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of tableData">
+          <td class="border px-4 py-2">{{ user.id }}</td>
+          <td class="border px-4 py-2">{{ user.firstName }}</td>
+          <td class="border px-4 py-2">{{ user.lastName }}</td>
+          <td class="border px-4 py-2">{{ user.username }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

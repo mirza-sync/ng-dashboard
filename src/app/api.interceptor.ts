@@ -50,6 +50,54 @@ export class ApiInterceptor implements HttpInterceptor {
       }
     }
 
+    if (
+      url === 'http://test-demo.aemenersol.com/api/dashboard' &&
+      method === 'GET'
+    ) {
+      const hasAuthHeader =
+        headers.has('Authorization') || request.headers.has('Authorization');
+      if (!hasAuthHeader && !token) {
+        return throwError(() => new Error('Missing Bearer Token'));
+      }
+
+      const mockDashboardData = {
+        chartDonut: [{ value: 55 }, { value: 25 }, { value: 20 }, { value: 5 }],
+        chartbar: [
+          { value: 12000 },
+          { value: 19000 },
+          { value: 15000 },
+          { value: 12000 },
+          { value: 19000 },
+          { value: 15000 },
+          { value: 15000 },
+        ],
+        tableUsers: [
+          {
+            id: 1,
+            firstName: 'Mark',
+            lastName: 'Otto',
+            username: '@mdo',
+          },
+          {
+            id: 2,
+            firstName: 'Jacob',
+            lastName: 'Throton',
+            username: '@fat',
+          },
+          {
+            id: 3,
+            firstName: 'Larry',
+            lastName: 'theBird',
+            username: '@twitter',
+          },
+        ],
+      };
+
+      return of(
+        new HttpResponse({ status: 200, body: mockDashboardData }),
+      ).pipe(delay(600));
+    }
+
     return next.handle(request);
   }
 }
