@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { DashboardData, DashboardService } from '../service/dashboard.service';
 import { Chart, registerables } from 'chart.js';
+import { AuthService } from '../service/auth.service';
 Chart.register(...registerables);
 
 @Component({
@@ -16,6 +17,7 @@ Chart.register(...registerables);
 })
 export class DashboardComponent implements OnInit {
   private dashboardService = inject(DashboardService);
+  private authService = inject(AuthService);
   @ViewChild('donutCanvas', { static: false })
   donutCanvas!: ElementRef<HTMLCanvasElement>;
   @ViewChild('barCanvas', { static: false })
@@ -75,5 +77,9 @@ export class DashboardComponent implements OnInit {
         scales: { y: { beginAtZero: true } },
       },
     });
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
