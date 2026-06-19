@@ -21,7 +21,9 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "skipLibCheck": true,
+    "ignoreDeprecations": "6.0",
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
